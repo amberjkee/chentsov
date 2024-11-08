@@ -14,7 +14,6 @@
     <table class="table">
       <thead>
         <tr>
-
           <th scope="col">Номер договора</th>
           <th scope="col">Название заказчика</th>
           <th scope="col">Адрес заказчика</th>
@@ -31,14 +30,20 @@
           <td>{% if forloop.counter < 2 %}{{element.customer.name}}{% endif %}</td>
           <td>{% if forloop.counter < 2 %}{{element.customer.address}}{% endif %}</td>
           <td>{{element.count}}</td>        
-          <td><p><a href="/">{{element.type.art}}</a></p></td>
+          <td>{{element.type.art}}</td>
           <td>{% if forloop.counter < 2 %}{{element.is_confirmed}}{% endif %}</td>    
           <td>{% if forloop.counter < 2 %}{{element.is_done}}{% endif %}</td> 
         </tr>
         {%endfor%}
       </tbody>
     </table>
-
+    <div class="position-relative">
+      <div class="btn-group position-absolute top-50 end-0">
+        <a href="/" class="btn btn-primary active">Подтвердить</a>
+        <a href="/" class="btn btn-default">Назад</a>
+      </div>    
+    </div>
+    
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

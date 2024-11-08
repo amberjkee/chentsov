@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import *
+from .forms import *
 
 def index(request):
     list = _get_list_of_parametrs()
@@ -14,6 +15,30 @@ def order(request, num=0):
         'list':list,
         }
     return render(request, "main/order.html", context=context)
+
+def new_order(request):
+    if request.method == 'POST':
+        form = AddOrder(request.POST)
+        try:
+            form.save()
+            return index(request)
+        except:
+            form.add_error(None, "Error")
+    else:
+        form = AddOrder()
+    return render(request, "main/new_order.html",{"form": form,})
+
+def new_customer(request):
+    if request.method == 'POST':
+        form = AddCustomer(request.POST)
+        try:
+            form.save()
+            return index(request)
+        except:
+            form.add_error(None, "Error")
+    else:
+        form = AddCustomer()
+    return render(request, "main/new_customer.html",{"form": form,})
 
 def _get_list_of_parametrs():
     p = Products.objects.values()
